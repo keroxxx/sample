@@ -3,8 +3,8 @@ development:
   encoding: utf8
   database: sample_development
   pool: 5
-  username:sample-user
-  password:sample-password
+  username: sample-user
+  password: sample-password
   host: localhost
 
 test:
@@ -12,8 +12,8 @@ test:
   encoding: utf8
   database: sample_test
   pool: 5
-  username:sample-user
-  password:sample-password
+  username: sample-user
+  password: sample-password
   host: localhost
 
 production:
@@ -21,6 +21,6 @@ production:
   encoding: utf8
   database: sample_production
   pool: 5
-  username:sample-user
-  password:sample-password
+  username: sample-user
+  password: sample-password
   host: localhost
