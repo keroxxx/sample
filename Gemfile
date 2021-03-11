@@ -18,6 +18,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'faker'
 gem 'dotenv-rails'
+gem 'rails-i18n'
 gem 'bootsnap',         '>= 1.4.2', require: false
 
 group :development, :test do
