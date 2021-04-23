@@ -8,7 +8,6 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-
   config.active_storage.service = :local
 
   config.force_ssl = true
@@ -19,6 +18,24 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+
+  host = 'https://sample-app00.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => host,
+    :authentication => :plain,
+  }
+
+  config.active_record.dump_schema_after_migration = false
+
+  
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify
@@ -30,7 +47,4 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-
-  config.active_record.dump_schema_after_migration = false
-
 end

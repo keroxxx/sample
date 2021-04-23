@@ -18,6 +18,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'faker'
 gem 'dotenv-rails'
+gem 'rqrcode'
+gem 'chunky_png'
 gem 'rails-i18n'
 gem 'bootsnap',         '>= 1.4.2', require: false
 
@@ -34,7 +36,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'rails-controller-testing'
