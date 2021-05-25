@@ -1,3 +1,10 @@
+hoge:
+  name: Hoge
+  email: hoge@example.gov
+  password_digest: <%= User.digest('password') %>
+  activated: false
+  activated_at: nil
+
 michael:
   name: Michael Example
   email: michael@example.com
