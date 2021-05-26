@@ -8,7 +8,7 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   config.force_ssl = true
 
@@ -34,7 +34,6 @@ Rails.application.configure do
   }
 
   config.active_record.dump_schema_after_migration = false
-
   
   config.i18n.fallbacks = true
 
