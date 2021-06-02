@@ -50,4 +50,15 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     get root_path
     assert_match "1 micropost", response.body
   end
+
+  test "should feed have microposts with uniqueness" do
+    log_in_as(@user)
+    get root_path
+    # マイクロポストの投稿
+    content = "This micropost is only one!"
+    post microposts_path, params: { micropost: { content: content }}
+    follow_redirect!
+    # feedのダブりの確認
+    assert_select 'span.content', { :count=>1, :text=> "#{content}" }
+  end
 end
