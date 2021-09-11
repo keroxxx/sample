@@ -21,9 +21,9 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     content = "This micropost really ties the room together"
     image = fixture_file_upload('test/fixtures/kitten.jpg', 'image/jpeg')
     assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: { micropost: { content: content, image: image } }
+      post microposts_path, params: { micropost: { content: content, images: image } }
     end
-    assert assigns(:micropost).image.attached?
+    assert assigns(:micropost).images.attached?
     follow_redirect!
     assert_match content, response.body
     # 投稿を削除する

@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "Account deleted"
     redirect_to users_url
   end
 
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :remove_avatar)
     end
 
     def correct_user

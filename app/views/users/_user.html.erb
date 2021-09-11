@@ -1,4 +1,11 @@
 <li>
+  <b class="avatar">
+    <% if user.avatar? %>
+      <%= link_to image_tag(user.avatar.url), user %>
+    <% else %>
+      <%= image_tag '/assets/default.png' %>
+    <% end %>
+  </b>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,

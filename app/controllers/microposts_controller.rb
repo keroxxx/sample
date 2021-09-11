@@ -4,9 +4,8 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = "Posted"
       redirect_to root_url
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
@@ -16,14 +15,14 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = "Post Deleted"
     redirect_back(fallback_location: root_url)
   end
 
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :image)
+      params.require(:micropost).permit(:content)
     end
 
     def correct_user

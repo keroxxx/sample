@@ -3,6 +3,11 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
+        <% if @user.avatar? %>
+          <%= image_tag @user.avatar.url %>
+        <% else %>
+          <%= image_tag '/assets/default.png' %>
+        <% end %>
         <%= @user.name %>
       </h1>
     </section>
