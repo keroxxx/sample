@@ -76,6 +76,13 @@ p {
   }
 }
 
+.icon img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border:1px solid #aaaaaa;
+}
+
 /* footer */
 
 footer {
@@ -164,6 +171,12 @@ input {
 aside {
   section.user_info {
     margin-top: 20px;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border:1px solid #aaaaaa;
+    }
   }
   section {
     padding: 10px 0;
@@ -186,6 +199,15 @@ aside {
     }
   }
 }
+
+// .avatar {
+//   float: left;
+//   margin-right: 10px;
+// }
+
+// .avatar_edit {
+//   margin-top: 15px;
+// }
 
 .stats {
   overflow: auto;
@@ -210,19 +232,26 @@ aside {
   }
 }
 
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
-  }
-}
+// .user_avatars {
+//   overflow: auto;
+//   margin-top: 10px;
+//   .gravatar {
+//     margin: 1px 1px;
+//   }
+//   a {
+//     padding: 0;
+//   }
+// }
 
 .users.follow {
   padding: 0;
+}
+
+span.avatar {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
 }
 
 /* Users index */
@@ -272,9 +301,10 @@ aside {
   }
 }
 
-span.image {
-  margin-top: 10px;
-  input {
-    border: 0;
+.avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border:1px solid #aaaaaa;
   }
-}
+

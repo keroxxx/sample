@@ -8,9 +8,8 @@ gem 'webpacker',        '4.0.7'
 gem 'turbolinks',       '5.2.0'
 gem 'jbuilder',         '2.9.1'
 gem 'bcrypt',           '~> 3.1.7'
-gem 'aws-sdk-s3',              '1.46.0', require: false
-gem 'image_processing', '1.9.3'
-gem 'active_storage_validations', '0.8.2'
+gem 'fog-aws'
+gem 'carrierwave'
 gem 'mini_magick'
 gem 'bootstrap-sass'
 gem 'will_paginate'
@@ -23,6 +22,9 @@ gem 'bootsnap',         '>= 1.4.2', require: false
 group :development, :test do
   gem 'mysql2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'capybara'
 end
 
 group :development do
@@ -30,17 +32,12 @@ group :development do
   gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-  gem 'rails-controller-testing'
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'guard'
-  gem 'guard-minitest'
 end
 
 group :produciton do
