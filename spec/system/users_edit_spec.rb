@@ -8,8 +8,7 @@ RSpec.describe "UsersEdits", type: :system do
     fill_in 'Email',    with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    link = find('.dropdown-toggle')
-    link.click
+    find('.dropdown-toggle').click
     click_on 'Settings'
     fill_in 'Name', with: ' '
     fill_in 'Email', with: 'user@invalid'
@@ -28,8 +27,7 @@ RSpec.describe "UsersEdits", type: :system do
     fill_in 'Email',    with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    link = find('.dropdown-toggle')
-    link.click
+    find('.dropdown-toggle').click
     click_on 'Settings'
     fill_in 'Name', with: 'Foo Bar'
     fill_in 'Email', with: 'foo@bar.com'

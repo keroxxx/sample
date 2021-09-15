@@ -34,12 +34,10 @@ Rails.application.configure do
   }
 
   config.active_record.dump_schema_after_migration = false
-  
   config.i18n.fallbacks = true
-
   config.active_support.deprecation = :notify
-
   config.log_formatter = ::Logger::Formatter.new
+  config.eager_load = true
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
