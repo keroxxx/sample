@@ -25,8 +25,8 @@ production:
   encoding: utf8mb4
   chaeset: utf8mb4
   collation: utf8mb4_general_ci
-  database: <%= ENV['DB_NAME'] %>
+  database: sample
   pool: 5
-  username: <%= ENV['DB_USERNAME'] %>
+  username: root
   password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['DB_HOSTNAME'] %>
+  socket: /var/lib/mysql/mysql.sock
