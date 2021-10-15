@@ -1,14 +1,14 @@
 Rails.application.configure do
   config.cache_classes = true
 
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.assets.compile = false
 
-  config.force_ssl = true
+  config.force_ssl = false
 
   config.log_level = :debug
 

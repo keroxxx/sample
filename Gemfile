@@ -42,7 +42,6 @@ end
 
 group :produciton do
   gem 'mysql2'
-  gem 'puma_worker_killer'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
