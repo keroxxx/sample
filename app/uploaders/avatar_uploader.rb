@@ -9,6 +9,17 @@ class AvatarUploader < CarrierWave::Uploader::Base
     storage :fog
   end
 
+  # iPhoneから画像投稿した際に、画像の向きがおかしい場合があるので、
+  # Rmagickのauto_orientメソッドで向きを正す。
+  process :fix_rotate
+  def fix_rotate
+    manipulate! do |img|
+      img = img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -28,7 +39,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     0..5.megabytes
   end
 
-  process resize_to_fit:[400,400]
+  process resize_to_fill:[400,400]
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

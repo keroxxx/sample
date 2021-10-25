@@ -6,7 +6,7 @@
         <% if @user.avatar? %>
           <%= image_tag @user.avatar.url %>
         <% else %>
-          <%= image_tag '/assets/default.png' %>
+          <%= image_tag asset_path('default.png') %>
         <% end %>
         <%= @user.name %>
       </h1>

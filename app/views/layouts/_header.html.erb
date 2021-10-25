@@ -12,7 +12,7 @@
                 <% if current_user.avatar? %>
                   <%= image_tag current_user.avatar.url %>
                 <% else %>
-                  <%= image_tag '/assets/default.png' %>
+                  <%= image_tag asset_path('default.png') %>
                 <% end %>
               </b>
             </a>
