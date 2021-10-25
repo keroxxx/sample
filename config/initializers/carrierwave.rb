@@ -13,7 +13,7 @@ CarrierWave.configure do |config|
       path_style: true
     }
     config.fog_directory  = 'sample-avatar'
-    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/sample-avatar'
+    config.asset_host = 'https://static.purerisu.com'
   else
     config.storage :file
     config.enable_processing = false if Rails.env.test?

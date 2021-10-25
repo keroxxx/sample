@@ -8,7 +8,7 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-  config.force_ssl = false
+  config.force_ssl = true
 
   config.log_level = :debug
 

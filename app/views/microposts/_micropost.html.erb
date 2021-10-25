@@ -3,7 +3,7 @@
     <% if micropost.user.avatar? %>
       <%= link_to image_tag(micropost.user.avatar.url), micropost.user %>
     <% else %>
-      <%= image_tag '/assets/default.png' %>
+      <%= image_tag asset_path('default.png') %>
     <% end %>
   </b>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
