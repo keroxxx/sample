@@ -1,29 +1,29 @@
 development:
   adapter: mysql2
   encoding: utf8mb4
-  chaeset: utf8mb4
+  charset: utf8mb4
   collation: utf8mb4_general_ci
   database: sample_development
   pool: 5
-  username: sample-user
-  password: sample-password
-  host: localhost
+  username: root
+  password: root-password
+  host: db
 
 test:
   adapter: mysql2
   encoding: utf8mb4
-  chaeset: utf8mb4
+  charset: utf8mb4
   collation: utf8mb4_general_ci
   database: sample_test
   pool: 5
-  username: sample-user
-  password: sample-password
-  host: localhost
+  username: root
+  password: root-password
+  host: db
 
 production:
   adapter: mysql2
   encoding: utf8mb4
-  chaeset: utf8mb4
+  charset: utf8mb4
   collation: utf8mb4_general_ci
   database: sample
   pool: 5
