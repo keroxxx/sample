@@ -1,0 +1,69 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.1.2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.2-node-browsers
+    working_directory: ~/sample
+    steps:
+      - checkout
+      - ruby/install-deps:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          path: ./vendor/bundle
+          with-cache: true
+
+  rspec:
+    docker:
+      - image: circleci/ruby:2.7.2
+      - image: circleci/mysql:5.6
+        environment:
+          MYSQL_ROOT_PASSWORD: root-password
+          MYSQL_DATABASE: sample_test
+          MYSQL_USER: root
+    environment:
+        BUNDLE_JOBS: "3"
+        BUNDLE_RETRY: "3"
+        APP_DATABASE_HOST: "127.0.0.1"
+        RAILS_ENV: test
+    working_directory: ~/sample
+    steps:
+      - checkout
+      - ruby/install-deps:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          path: vendor/bundle
+          with-cache: true
+
+      - run:
+          name: Database Setup
+          command: bundle exec rails db:migrate
+
+      - run:
+          name: Run rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+
+            bundle exec rspec
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - rspec:
+          requires:
+            - build
