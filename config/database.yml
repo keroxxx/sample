@@ -14,11 +14,12 @@ test:
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
-  database: sample_test
+  database: ci_test
   pool: 5
   username: root
   password: root-password
-  host: db
+  host: '127.0.0.1'
+  port: '3306'
 
 production:
   adapter: mysql2
