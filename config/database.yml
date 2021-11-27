@@ -16,7 +16,7 @@ test:
   collation: utf8mb4_general_ci
   database: ci_test
   pool: 5
-  username: root
+  username: 'root'
   password: root-password
   host: '127.0.0.1'
   port: '3306'
