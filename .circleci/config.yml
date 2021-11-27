@@ -10,6 +10,7 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: root-password
           MYSQL_DATABASE: ci_test
+          MYSQL_PASSWORD: root-password
     working_directory: ~/sample
     steps:
       - checkout
@@ -25,6 +26,7 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: root-password
           MYSQL_DATABASE: ci_test
+          MYSQL_PASSWORD: root-password
     environment:
         BUNDLE_JOBS: "3"
         BUNDLE_RETRY: "3"
