@@ -6,6 +6,12 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.2-node-browsers
+      - image: circleci/mysql:5.6
+        environment:
+          MYSQL_ROOT_PASSWORD: root-password
+          MYSQL_DATABASE: ci_test
+          MYSQL_USER: user
+          MYSQL_PASSWORD: root-password
     working_directory: ~/sample
     steps:
       - checkout
@@ -16,7 +22,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:2.7.2
+      - image: circleci/ruby:2.7.2-node-browsers
       - image: circleci/mysql:5.6
         environment:
           MYSQL_ROOT_PASSWORD: root-password
@@ -35,8 +41,6 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
           path: vendor/bundle
           with-cache: true
-
-      - run: mv config/database.yml.ci config/database.yml 
 
       - run:
           name: Database Setup
