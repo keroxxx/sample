@@ -20,7 +20,7 @@ jobs:
       - run:
           name: yarn Install
           command: yarn install
-      - run: bundle exec rails webpacker:install
+      - run: bundle exec bin/webpack
 
   test:
     docker:
@@ -49,7 +49,7 @@ jobs:
       - run:
           name: yarn Install
           command: yarn install
-      - run: bundle exec rails webpacker:install
+      - run: bundle exec bin/webpack
 
       - run:
           name: Run rspec
