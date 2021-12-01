@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersEdits", type: :system do
+RSpec.describe 'UsersEdits', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   scenario 'it fails edit with wrong information' do

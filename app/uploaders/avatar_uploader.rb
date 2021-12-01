@@ -25,21 +25,20 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   # アップロードされたファイルがない場合に表示するデフォルトの画像の指定
-  def default_url(*args)
-    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+  def default_url(*_args)
+    ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default.png'].compact.join('_'))
   end
 
-  
-  # アップロード可能なファイル拡張子を jpg, jpeg, png, gif に制限    
+  # アップロード可能なファイル拡張子を jpg, jpeg, png, gif に制限
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
-  
+
   def size_range
     0..5.megabytes
   end
 
-  process resize_to_fill:[400,400]
+  process resize_to_fill: [400, 400]
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
-  describe "Relationships#create" do
+RSpec.describe 'Relationships', type: :request do
+  describe 'Relationships#create' do
     let(:post_request) { post relationships_path }
 
-    context "when not logged in" do
+    context 'when not logged in' do
       it "doesn't change Relationship's count" do
         expect { post_request }.to change(Relationship, :count).by(0)
       end
 
-      it "redirects to login_url" do
+      it 'redirects to login_url' do
         expect(post_request).to redirect_to login_url
       end
     end
   end
 
-  describe "Relationships#destroy" do
+  describe 'Relationships#destroy' do
     let(:user) { FactoryBot.create(:user) }
     let(:other_user) { FactoryBot.create(:user) }
     let(:delete_request) { delete relationship_path(other_user) }
@@ -24,12 +24,12 @@ RSpec.describe "Relationships", type: :request do
       user.following << other_user
     end
 
-    context "when not logged in" do
+    context 'when not logged in' do
       it "doesn't change Relationship's count" do
         expect { delete_request }.to change(Relationship, :count).by(0)
       end
 
-      it "redirects to login_url" do
+      it 'redirects to login_url' do
         expect(delete_request).to redirect_to login_url
       end
     end

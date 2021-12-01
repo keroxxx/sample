@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    name { "Example User" }
+    name { 'Example User' }
     sequence(:email) { |n| "user_#{n}@example.com" }
-    password { "foobar" }
-    password_confirmation { "foobar" }
+    password { 'foobar' }
+    password_confirmation { 'foobar' }
     activated { true }
     activated_at { Time.zone.now }
     avatar { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/default.png')) }
@@ -19,6 +19,6 @@ FactoryBot.define do
   end
 
   trait :with_microposts do
-    after(:create) { |user| create_list(:micropost, 5, user: user)}
+    after(:create) { |user| create_list(:micropost, 5, user: user) }
   end
 end

@@ -12,17 +12,17 @@ Rails.application.configure do
 
   config.log_level = :debug
 
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   config.action_mailer.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = {  :host => 'http://54.199.24.92' }
+  config.action_mailer.default_url_options = { host: 'http://54.199.24.92' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:"smtp.gmail.com",
+    address: 'smtp.gmail.com',
     domain: 'gmail.com',
-    port:587,
+    port: 587,
     user_name: Rails.application.credentials.gmail[:user_name],
     password: Rails.application.credentials.gmail[:password],
     authentication: :login,
@@ -35,7 +35,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.eager_load = true
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)

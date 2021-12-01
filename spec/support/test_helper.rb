@@ -7,7 +7,7 @@ module TestHelper
     post login_path, params: { session: {
       email: user.email,
       password: user.password,
-      remember_me: remember_me,
+      remember_me: remember_me
     } }
   end
 end
