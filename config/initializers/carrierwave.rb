@@ -12,7 +12,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1',
       path_style: true
     }
-    config.fog_directory  = 'sample-avatar'
+    config.fog_directory = 'sample-avatar'
     config.asset_host = 'https://static.purerisu.com'
   else
     config.storage :file

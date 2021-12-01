@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "PasswordResets", type: :request do
+RSpec.describe 'PasswordResets', type: :request do
   let(:user) { FactoryBot.create(:user) }
 
   before do
     user.create_reset_digest
   end
 
-  describe "def new" do
-    it "returns http success" do
-      get "/password_resets/new"
+  describe 'def new' do
+    it 'returns http success' do
+      get '/password_resets/new'
       aggregate_failures do
         expect(response).to have_http_status(:success)
         expect(response.body).to include 'Forgot password'
@@ -17,10 +17,10 @@ RSpec.describe "PasswordResets", type: :request do
     end
   end
 
-  describe "def create" do
+  describe 'def create' do
     # メールアドレスが無効
     it 'falis create with invalid email' do
-      post password_resets_path, params: { password_reset: { email: "" } }
+      post password_resets_path, params: { password_reset: { email: '' } }
       aggregate_failures do
         expect(response).to have_http_status(200)
         expect(response.body).to include 'Forgot password'
@@ -38,11 +38,11 @@ RSpec.describe "PasswordResets", type: :request do
     end
   end
 
-  describe "def edit" do
+  describe 'def edit' do
     # メールアドレスが無効
     context 'when user sends correct token and wrong email' do
       before do
-        get edit_password_reset_path(user.reset_token, email: "")
+        get edit_password_reset_path(user.reset_token, email: '')
       end
 
       it 'fails' do
@@ -66,7 +66,7 @@ RSpec.describe "PasswordResets", type: :request do
     # メールアドレスが有効で、トークンが無効
     context 'when user sends wrong token and correct email' do
       before do
-        get edit_password_reset_path("wrong", email: user.email)
+        get edit_password_reset_path('wrong', email: user.email)
       end
 
       it 'fails' do
@@ -83,65 +83,65 @@ RSpec.describe "PasswordResets", type: :request do
       it 'succeeds' do
         aggregate_failures do
           expect(response).to have_http_status(200)
-          expect(response.body).to include "Reset password"
+          expect(response.body).to include 'Reset password'
         end
       end
     end
   end
 
-  describe "def update" do
+  describe 'def update' do
     # 無効なパスワードとパスワード確認
-    context "when user sends wrong password" do
+    context 'when user sends wrong password' do
       before do
         patch password_reset_path(user.reset_token),
               params: {
                 email: user.email,
                 user: {
-                  password: "foobaz",
-                  password_confirmation: "barquux",
-                },
+                  password: 'foobaz',
+                  password_confirmation: 'barquux'
+                }
               }
       end
 
       it 'fails' do
         aggregate_failures do
           expect(response).to have_http_status(200)
-          expect(response.body).to include "Reset password"
+          expect(response.body).to include 'Reset password'
         end
       end
     end
 
     # パスワードが空
-    context "when user sends blank password" do
+    context 'when user sends blank password' do
       before do
         patch password_reset_path(user.reset_token),
               params: {
                 email: user.email,
                 user: {
-                  password: "",
-                  password_confirmation: "",
-                },
+                  password: '',
+                  password_confirmation: ''
+                }
               }
       end
 
       it 'fails' do
         aggregate_failures do
           expect(response).to have_http_status(200)
-          expect(response.body).to include "Reset password"
+          expect(response.body).to include 'Reset password'
         end
       end
     end
 
     # 有効なパスワードとパスワード確認
-    context "when user sends correct password" do
+    context 'when user sends correct password' do
       before do
         patch password_reset_path(user.reset_token),
               params: {
                 email: user.email,
                 user: {
-                  password: "foobaz",
-                  password_confirmation: "foobaz",
-                },
+                  password: 'foobaz',
+                  password_confirmation: 'foobaz'
+                }
               }
       end
 
@@ -156,21 +156,21 @@ RSpec.describe "PasswordResets", type: :request do
     end
   end
 
-  describe "def check_expiration" do
-    context "when user updates after 3 hours" do
+  describe 'def check_expiration' do
+    context 'when user updates after 3 hours' do
       before do
         user.update_attribute(:reset_sent_at, 3.hours.ago)
         patch password_reset_path(user.reset_token),
               params: {
                 email: user.email,
                 user: {
-                  password: "foobar",
-                  password_confirmation: "foobar",
-                },
+                  password: 'foobar',
+                  password_confirmation: 'foobar'
+                }
               }
       end
 
-      it "fails" do
+      it 'fails' do
         expect(response).to redirect_to new_password_reset_url
       end
     end

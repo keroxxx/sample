@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
-  describe "GET /users" do
-    it "redirects login when not logged in" do
+RSpec.describe 'Users', type: :request do
+  describe 'GET /users' do
+    it 'redirects login when not logged in' do
       get users_path
       expect(response).to redirect_to login_url
     end
   end
 
-  describe "POST /users" do
+  describe 'POST /users' do
     let(:user) { FactoryBot.attributes_for(:user) }
 
-    it "adds new user with correct signup information" do
+    it 'adds new user with correct signup information' do
       aggregate_failures do
         expect do
           post users_path, params: { user: user }
@@ -23,7 +23,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "PATCH /users/:id" do
+  describe 'PATCH /users/:id' do
     let(:user) { FactoryBot.create(:user) }
 
     before do
@@ -32,26 +32,26 @@ RSpec.describe "Users", type: :request do
 
     it 'fails edit with wrong information' do
       patch user_path(user), params: { user: {
-        name: " ",
-        email: "foo@invalid",
-        password: "foo",
-        password_confirmation: "bar",
+        name: ' ',
+        email: 'foo@invalid',
+        password: 'foo',
+        password_confirmation: 'bar'
       } }
       expect(response).to have_http_status(200)
     end
 
     it 'succeeds edit with correct information' do
       patch user_path(user), params: { user: {
-        name: "Foo Bar",
-        email: "foo@bar.com",
-        password: "",
-        password_confirmation: "",
+        name: 'Foo Bar',
+        email: 'foo@bar.com',
+        password: '',
+        password_confirmation: ''
       } }
       expect(response).to redirect_to user_path(user)
     end
   end
 
-  describe "before_action: :logged_in_user" do
+  describe 'before_action: :logged_in_user' do
     let(:user) { FactoryBot.create(:user) }
 
     it 'redirects edit when not logged in' do
@@ -62,7 +62,7 @@ RSpec.describe "Users", type: :request do
     it 'redirects update when not logged in' do
       patch user_path(user), params: { user: {
         name: user.name,
-        email: user.email,
+        email: user.email
       } }
       expect(response).to redirect_to login_path
     end
@@ -83,7 +83,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "before_action: :correct_user" do
+  describe 'before_action: :correct_user' do
     let(:user) { FactoryBot.create(:user) }
     let(:other_user) { FactoryBot.create(:user) }
 
@@ -99,13 +99,13 @@ RSpec.describe "Users", type: :request do
     it 'redirects update when logged in as wrong user' do
       patch user_path(user), params: { user: {
         name: user.name,
-        eemail: user.email,
+        eemail: user.email
       } }
       expect(response).to redirect_to root_path
     end
   end
 
-  describe "delete /users/:id" do
+  describe 'delete /users/:id' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:admin_user) { FactoryBot.create(:user, :admin) }
 
@@ -118,7 +118,7 @@ RSpec.describe "Users", type: :request do
         expect(response).to redirect_to root_url
       end
     end
-    
+
     it 'succeds when user is administrator' do
       log_in_as(admin_user)
       aggregate_failures do
@@ -130,4 +130,3 @@ RSpec.describe "Users", type: :request do
     end
   end
 end
-

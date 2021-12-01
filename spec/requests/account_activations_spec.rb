@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "AccountActivations", type: :request do
+RSpec.describe 'AccountActivations', type: :request do
   let(:user) { FactoryBot.create(:user, :no_activated) }
 
   # 正しいトークンと間違ったemailの場合
@@ -8,11 +8,11 @@ RSpec.describe "AccountActivations", type: :request do
     before do
       get edit_account_activation_path(
         user.activation_token,
-        email: 'wrong',
+        email: 'wrong'
       )
     end
 
-    it "falis login" do
+    it 'falis login' do
       expect(is_logged_in?).to be_falsy
       expect(response).to redirect_to root_url
     end
@@ -23,11 +23,11 @@ RSpec.describe "AccountActivations", type: :request do
     before do
       get edit_account_activation_path(
         'wrong',
-        email: user.email,
+        email: user.email
       )
     end
 
-    it "falis login" do
+    it 'falis login' do
       expect(is_logged_in?).to be_falsy
       expect(response).to redirect_to root_url
     end
@@ -38,11 +38,11 @@ RSpec.describe "AccountActivations", type: :request do
     before do
       get edit_account_activation_path(
         user.activation_token,
-        email: user.email,
+        email: user.email
       )
     end
 
-    it "succeeds login" do
+    it 'succeeds login' do
       expect(is_logged_in?).to be_truthy
       expect(response).to redirect_to user
     end

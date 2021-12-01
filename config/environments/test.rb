@@ -1,5 +1,4 @@
 Rails.application.configure do
-
   config.cache_classes = false
   config.action_view.cache_template_loading = true
 

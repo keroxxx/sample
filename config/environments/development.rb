@@ -18,7 +18,7 @@ Rails.application.configure do
   end
 
   config.action_mailer.raise_delivery_errors = false
-  host = 'localhost:3000' 
+  host = 'localhost:3000'
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
   config.action_mailer.perform_caching = false
   config.active_support.deprecation = :log
@@ -26,12 +26,12 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
   config.assets.debug = true
   config.assets.quiet = true
-  config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:"smtp.gmail.com",
+    address: 'smtp.gmail.com',
     domain: 'gmail.com',
-    port:587,
+    port: 587,
     user_name: Rails.application.credentials.gmail[:user_name],
     password: Rails.application.credentials.gmail[:password],
     authentication: :login,
