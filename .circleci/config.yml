@@ -52,6 +52,10 @@ jobs:
       - run: bundle exec bin/webpack
 
       - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      - run:
           name: Run rspec
           command: |
             mkdir /tmp/test-results
